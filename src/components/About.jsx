@@ -92,6 +92,38 @@ export default function About() {
                 We blend high-end editorial aesthetics with cutting-edge business intelligence. From cinematic short-form media to WhatsApp automation flows, we establish absolute market authority for your brand.
               </p>
             </div>
+
+            {/* Founder Section */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/40 block mb-6">
+                THE FOUNDER
+              </span>
+              <div className="flex flex-col sm:flex-row items-start gap-6">
+                <div className="w-20 h-20 bg-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center text-xs text-white/30 uppercase tracking-widest font-mono">
+                  Photo
+                </div>
+                <div>
+                  <h3 className="text-xl font-display font-bold text-white mb-2">Lead Engineer & Director</h3>
+                  <p className="text-sm text-brand-light-gray/70 leading-relaxed font-light">
+                    "Tired of seeing local businesses get overcharged for slow, template websites and generic content, I started Edit Aura to bring premium, high-performance digital systems to ambitious founders. I oversee all strategic automation and technical development personally to ensure maximum ROI."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="mt-10 pt-8 border-t border-white/10">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/40 block mb-4">
+                CORE TECHNOLOGY STACK
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {['React', 'Vite', 'Node.js', 'Figma', 'Premiere Pro', 'WhatsApp API', 'Make / Zapier'].map(tech => (
+                  <span key={tech} className="text-[10px] font-mono bg-white/5 border border-white/10 px-3 py-1.5 text-white/70 uppercase tracking-widest">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>

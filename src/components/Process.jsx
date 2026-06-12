@@ -6,19 +6,19 @@ export default function Process() {
       num: '01',
       title: 'Discovery',
       icon: <Compass size={20} />,
-      desc: 'We audit your current brand presence, identify leaks in your audience retention, and dissect competitor positioning.'
+      desc: 'We audit your current brand presence, identify leaks in your audience retention, and dissect competitor positioning. Guaranteed <2-hour response time on WhatsApp during business hours.'
     },
     {
       num: '02',
       title: 'Strategy',
       icon: <Target size={20} />,
-      desc: 'We craft a custom visual tone of voice, storyboard high-stakes content pieces, and design automated routing pipelines.'
+      desc: 'We craft a custom visual tone of voice, storyboard high-stakes content pieces, and design automated routing pipelines. 2 rounds of structural revisions included standard.'
     },
     {
       num: '03',
       title: 'Execution',
       icon: <Zap size={20} />,
-      desc: 'Our studio launches premium content, builds custom high-performance web components, and turns on WhatsApp lead automations.'
+      desc: 'Our studio launches premium content, builds custom high-performance web components, and turns on WhatsApp lead automations. Clear milestone mapping—you always know what is being delivered next week.'
     },
     {
       num: '04',

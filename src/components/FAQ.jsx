@@ -5,6 +5,10 @@ import { Plus, Minus } from 'lucide-react';
 export default function FAQ() {
   const faqs = [
     {
+      q: "Who creates the content for social media?",
+      a: "We work with both client-provided content and content created specifically for your business. During onboarding, we discuss the best content workflow based on your industry, location, and goals."
+    },
+    {
       q: "What exactly is a creative growth partner?",
       a: "Unlike standard marketing agencies that focus purely on ad metrics or simple content management, EDIT AURA handles the entire attention-to-revenue funnel. We craft premium creative visual assets (social media, video editing, branding) and link them directly to technical business backends (high-performance web apps, WhatsApp automated pipelines, CRM logging)."
     },
@@ -19,6 +23,10 @@ export default function FAQ() {
     {
       q: "What is your typical execution timeline?",
       a: "Our discovery and visual framework phase takes 7-10 days. Content production and automated pipelines launch within 14-21 days of onboarding. Once live, optimization loops run weekly."
+    },
+    {
+      q: "What are your communication and revision guarantees?",
+      a: "We guarantee a <2-hour response time on WhatsApp during standard business hours. All our strategic projects include 2 rounds of structural revisions as a standard, and we provide clear milestone mapping so you always know what is being delivered each week."
     },
     {
       q: "How do we get started?",

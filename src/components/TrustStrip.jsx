@@ -1,65 +1,56 @@
+import { Check } from 'lucide-react';
 
 export default function TrustStrip() {
-  const metrics = [
-    { value: '20+', label: 'Businesses Managed' },
-    { value: '1L+', label: 'Reach Generated' },
-    { value: '100%', label: 'Delivery Rate' },
-  ];
+  // Admin-friendly structure: Add logo paths here when verified clients are acquired
+  const clientLogos = []; 
 
-  const brandTickers = [
-    'TechVentures', 'Zenix Media', 'Sora Creative', 'Aether Corp', 
-    'Aura Apparel', 'Vortex Digital', 'Nexus Automation', 'Prism Studio'
+  const trustSignals = [
+    "Transparent Pricing",
+    "Direct Communication",
+    "Custom Solutions",
+    "No Hidden Charges",
+    "Modern Technology Stack"
   ];
 
   return (
     <section className="bg-brand-white text-brand-black py-16 border-y border-neutral-200">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left: Ticker Column */}
-          <div className="lg:col-span-6 overflow-hidden relative w-full">
-            <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-neutral-400 block mb-6 text-left">
-              Trusted by fast-growing businesses
-            </span>
-            
-            {/* Infinite Horizontal Scroll Track */}
-            <div className="flex w-full overflow-hidden mask-gradient-x select-none">
-              <div className="flex gap-12 whitespace-nowrap animate-infinite-scroll">
-                {[...brandTickers, ...brandTickers].map((brand, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xl md:text-2xl font-display font-black uppercase tracking-wider text-black/80 hover:text-black transition-colors cursor-default"
-                  >
-                    {brand}
-                  </span>
-                ))}
+        
+        {/* Verified Trust Signals */}
+        <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-16">
+          {trustSignals.map((signal, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <div className="w-5 h-5 rounded-full bg-black/5 flex items-center justify-center text-black">
+                <Check size={12} strokeWidth={3} />
               </div>
+              <span className="text-xs md:text-sm font-bold tracking-wide uppercase text-black/80">
+                {signal}
+              </span>
             </div>
-          </div>
-
-          <div className="lg:col-span-6 grid grid-cols-3 gap-6 md:gap-12 border-t lg:border-t-0 lg:border-l border-neutral-200 pt-8 lg:pt-0 lg:pl-12">
-            {metrics.map((metric, index) => (
-              <div key={index} className="text-left">
-                <h3 className="text-3xl md:text-5xl font-display font-black tracking-tight mb-2 text-black">
-                  {metric.value}
-                </h3>
-                <p className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-500 font-medium leading-relaxed">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
+          ))}
         </div>
+
+        {/* Client Logos Placeholder */}
+        <div className="text-center">
+          <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-400 block mb-8">
+            TRUSTED BY
+          </span>
+          {clientLogos.length > 0 ? (
+            <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale">
+              {clientLogos.map((logo, index) => (
+                <img key={index} src={logo} alt="Client Logo" className="h-8 md:h-12 object-contain" />
+              ))}
+            </div>
+          ) : (
+            <div className="w-full max-w-2xl mx-auto py-12 border border-dashed border-neutral-300 bg-neutral-50/50">
+              <p className="text-sm text-neutral-500 font-mono">
+                [ Client logos will be displayed here. ]
+              </p>
+            </div>
+          )}
+        </div>
+
       </div>
-      
-      {/* Inline styles for custom masking and animation overrides */}
-      <style jsx="true">{`
-        .mask-gradient-x {
-          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-      `}</style>
     </section>
   );
 }
