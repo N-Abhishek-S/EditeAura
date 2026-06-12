@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #000000;
+  --color-brand-white: #ffffff;
+  --color-brand-dark: #111111;
+  --color-brand-light: #f5f5f5;
+  --color-brand-gray: #888888;
+  --color-brand-light-gray: #e5e5e5;
+  
+  --font-sans: "Inter", "Satoshi", "Geist", system-ui, -apple-system, sans-serif;
+  --font-display: "Geist", "Satoshi", "Inter", system-ui, -apple-system, sans-serif;
+  
+  --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+  
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* Custom base resets and utilities for editorial layout */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+  
+  /* Large editorial selection styling */
+  ::selection {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+/* Hairline borders & premium divider styles */
+.border-hairline {
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.border-hairline-dark {
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Custom smooth transitions */
+.transition-editorial {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
