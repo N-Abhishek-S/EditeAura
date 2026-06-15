@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function CaseStudy() {
   // Admin-friendly structure: Pass case study object as props later

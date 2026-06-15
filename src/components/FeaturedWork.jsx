@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function FeaturedWork() {
   // Admin-friendly structure: Add real project objects here when ready

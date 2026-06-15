@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Testimonials() {
   // Admin-friendly structure: Add real testimonial objects here when ready

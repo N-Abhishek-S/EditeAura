@@ -34,7 +34,7 @@ export default function BehindTheScenes() {
           </video>
           
           {/* Overlay elements for cinematic feel */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
           
           {/* UI overlay */}
           <div className="absolute top-6 left-6 flex items-center gap-2">

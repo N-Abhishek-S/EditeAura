@@ -148,46 +148,34 @@ export default function Automation() {
             })}
           </div>
 
-          {/* Right Column: Dynamic Simulation Mock Screen */}
-          <div className="lg:col-span-5 border border-neutral-200 bg-neutral-50/50 p-6 md:p-8 relative min-h-[420px] flex flex-col justify-between">
-            <div className="border-b border-neutral-200 pb-4 mb-6 flex justify-between items-center">
-              <span className="text-[10px] font-mono tracking-widest text-neutral-400">CONSOLE // FLOW_PREVIEW</span>
-              <span className="text-[10px] font-mono bg-emerald-50 text-emerald-600 px-2 py-0.5 uppercase tracking-widest font-bold">live simulator</span>
-            </div>
-
-            {/* Simulated Live Output Screen */}
-            <div className="flex-1 flex flex-col justify-center items-center text-center p-6 bg-white border border-neutral-200 shadow-sm relative overflow-hidden">
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="w-full space-y-4"
-              >
-                <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mx-auto text-black mb-2">
-                  {pipelineSteps[activeStep].icon}
+          {/* Right Column: Dashboard Image */}
+          <div className="lg:col-span-5 relative flex flex-col justify-center min-h-[420px] pt-8 lg:pt-0">
+            {/* Blue and Green Accent Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-500/20 to-emerald-500/20 blur-[80px] rounded-full z-0 pointer-events-none"></div>
+            
+            <div className="w-full relative z-10 rounded-[24px] overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.3)] border border-white/10 bg-black/5">
+              <div className="absolute inset-0 img-overlay z-10 pointer-events-none"></div>
+              
+              <img 
+                src="/assets/images/Automation.png" 
+                alt="Automation System Engine" 
+                className="w-full h-full object-cover hover-scale-img aspect-[4/3] md:aspect-auto"
+              />
+              
+              {/* Floating Information Card */}
+              <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 rounded-[16px] p-4 z-20 shadow-2xl flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                  <div>
+                    <span className="text-white text-[10px] font-mono tracking-widest uppercase block mb-1">Status</span>
+                    <span className="text-white text-sm font-bold">100% Automated Workflow</span>
+                  </div>
                 </div>
-                
-                <h4 className="text-lg font-display font-black text-black">
-                  Step {activeStep + 1}: {pipelineSteps[activeStep].title}
-                </h4>
-                
-                <p className="text-xs text-neutral-500 max-w-xs mx-auto leading-relaxed font-light">
-                  {pipelineSteps[activeStep].desc}
-                </p>
-
-                {/* Sub-process workflow logs visualization */}
-                <div className="bg-neutral-50 p-3 rounded border border-neutral-100 font-mono text-[9px] text-left text-neutral-400 space-y-1 mt-4">
-                  <div>&gt; pipeline_id: ea_flow_981</div>
-                  <div>&gt; status: {pipelineSteps[activeStep].status.toUpperCase().replace(' ', '_')}</div>
-                  <div>&gt; latency: {activeStep === 1 ? '240ms' : '15ms'}</div>
-                  <div className="text-black font-bold">&gt; executing_action... OK</div>
+                <div className="text-right hidden sm:block">
+                  <span className="text-white/60 text-[10px] font-mono tracking-widest uppercase block mb-1">Active Deals</span>
+                  <span className="text-emerald-400 text-sm font-mono font-bold">+24%</span>
                 </div>
-              </motion.div>
-            </div>
-
-            <div className="mt-6 text-center text-[10px] text-neutral-400 font-mono tracking-widest uppercase">
-              Engine status: ACTIVE // 100% AUTOMATED
+              </div>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ArrowRight, MessageCircle, AlertCircle, TrendingUp, ShieldCheck, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Check, MessageCircle, AlertCircle, TrendingUp, ShieldCheck, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
 
 export default function Packages() {
   const [openFaq, setOpenFaq] = useState(null);
