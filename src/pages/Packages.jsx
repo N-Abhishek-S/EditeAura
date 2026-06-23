@@ -7,7 +7,6 @@ export default function Packages() {
   const [formData, setFormData] = useState({ name: '', business: '', phone: '' });
 
   const handleWhatsApp = (message = 'Hi, I would like to know more about Edit Aura services.') => {
-    // Replace with your actual WhatsApp link/number
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/919876543210?text=${encodedMessage}`, '_blank');
   };

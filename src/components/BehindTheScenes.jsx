@@ -17,21 +17,20 @@ export default function BehindTheScenes() {
           </div>
         </div>
 
-        {/* Cinematic Video Player Placeholder */}
-        <div className="relative aspect-video w-full bg-[#0a0a0a] border border-white/10 overflow-hidden group">
-          {/* TODO: Replace src with actual Gemini-generated BTS video URL or local path */}
-          <video 
-            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            preload="none"
-            poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'><rect width='100%' height='100%' fill='%23111'/><text x='50%' y='50%' font-family='sans-serif' font-size='20' fill='%23666' text-anchor='middle'>BTS Video Loading...</text></svg>"
-          >
-            {/* Provide valid src when available */}
-            {/* <source src="/assets/bts-video.mp4" type="video/mp4" /> */}
-          </video>
+          {/* Cinematic Video Player Placeholder */}
+          <div className="relative aspect-video w-full bg-[#0a0a0a] border border-white/10 overflow-hidden group">
+            <video 
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              preload="auto"
+            >
+              {/* Pointing to the public directory path */}
+              <source src="/assets/videos/BTS.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           
           {/* Overlay elements for cinematic feel */}
           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
