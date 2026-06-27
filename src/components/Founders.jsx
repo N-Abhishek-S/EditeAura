@@ -120,7 +120,6 @@ export default function Founders() {
           <div className="bg-white rounded-[16px] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-neutral-100 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
             <div>
               <h3 className="text-xl font-display font-bold text-black mb-1">Abhishek</h3>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-bold">Founder & CEO</span>
             </div>
             <div className="flex flex-col gap-1 mt-auto">
               <span className="text-xs text-neutral-500 font-semibold">• AI Automation Engineer</span>
@@ -132,7 +131,6 @@ export default function Founders() {
           <div className="bg-white rounded-[16px] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-neutral-100 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
             <div>
               <h3 className="text-xl font-display font-bold text-black mb-1">Prashant</h3>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-bold">Co-Founder</span>
             </div>
             <div className="flex flex-col gap-1 mt-auto">
               <span className="text-xs text-neutral-500 font-semibold">• Digital Marketing</span>
@@ -144,7 +142,6 @@ export default function Founders() {
           <div className="bg-white rounded-[16px] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-neutral-100 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
             <div>
               <h3 className="text-xl font-display font-bold text-black mb-1">Pavan</h3>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-bold">Co-Founder</span>
             </div>
             <div className="flex flex-col gap-1 mt-auto">
               <span className="text-xs text-neutral-500 font-semibold">• Social Media Operations</span>
