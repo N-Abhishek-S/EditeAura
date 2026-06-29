@@ -8,7 +8,7 @@ export default function Services() {
       icon: <Share2 size={24} />,
       platforms: ['Instagram Growth', 'LinkedIn Authority', 'Facebook Strategy'],
       description: 'Full-service handling of your social profiles with bespoke editorial content calendars designed to position you as an industry leader.',
-      image: '/assets/images/Social Media Management.png'
+      image: '/assets/images/Social Media Management.jpg'
     },
     {
       num: '02',

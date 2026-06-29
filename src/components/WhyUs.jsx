@@ -1,4 +1,3 @@
-import React from 'react';
 import { Target, TrendingUp, Zap, Briefcase, Clock } from 'lucide-react';
 
 export default function WhyUs() {

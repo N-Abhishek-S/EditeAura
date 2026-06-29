@@ -1,25 +1,62 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function FinalCTA() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
+    company: '',
     service: 'Social Media Management',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!formState.phone.trim() || !formState.company.trim()) {
+       toast.error("Please fill in all fields.");
+       return;
+    }
+
     setLoading(true);
-    // Simulate API pipeline submit
-    setTimeout(() => {
-      setLoading(false);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState)
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+      
       setIsSubmitted(true);
-    }, 1500);
+      toast.success(data.message || "Your enquiry has been sent successfully.");
+      
+      // Reset form
+      setFormState({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: 'Social Media Management',
+        message: ''
+      });
+      
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error(error.message || "Unable to send your enquiry. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const services = [
@@ -32,7 +69,18 @@ export default function FinalCTA() {
   ];
 
   return (
-    <section id="contact" className="bg-brand-black text-brand-white py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
+    <>
+      <Toaster 
+        position="bottom-right" 
+        toastOptions={{
+          style: {
+            background: '#333',
+            color: '#fff',
+            border: '1px solid #444'
+          }
+        }}
+      />
+      <section id="contact" className="bg-brand-black text-brand-white py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
       {/* Background visual detail */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
 
@@ -99,34 +147,66 @@ export default function FinalCTA() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6 text-left">
-                {/* Name */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
-                    YOUR NAME
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    placeholder="Enter your name"
-                    className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
-                    EMAIL ADDRESS
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    placeholder="Enter your business email"
-                    className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
+                      YOUR NAME
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formState.name}
+                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                      placeholder="Enter your name"
+                      className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
+                    />
+                  </div>
+  
+                  {/* Email */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
+                      EMAIL ADDRESS
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formState.email}
+                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                      placeholder="Enter your business email"
+                      className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
+                    />
+                  </div>
+  
+                  {/* Phone */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
+                      PHONE NUMBER
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={formState.phone}
+                      onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                      placeholder="Enter your phone number"
+                      className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
+                    />
+                  </div>
+  
+                  {/* Company */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-white/40">
+                      COMPANY NAME
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formState.company}
+                      onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                      placeholder="Enter your company name"
+                      className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white focus:bg-white/10 transition-colors"
+                    />
+                  </div>
                 </div>
 
                 {/* Service Selection */}
@@ -160,6 +240,7 @@ export default function FinalCTA() {
                   </label>
                   <textarea
                     rows="3"
+                    required
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     placeholder="Tell us about your brand, challenge, and goals..."
@@ -171,9 +252,14 @@ export default function FinalCTA() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 bg-white text-black py-4 text-xs font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors"
+                  className={`w-full flex items-center justify-center gap-3 bg-white text-black py-4 text-xs font-bold uppercase tracking-widest transition-colors ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-neutral-200'}`}
                 >
-                  {loading ? 'Transmitting brief...' : (
+                  {loading ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
                     <>
                       Transmit Project Brief <Send size={12} />
                     </>
@@ -186,5 +272,6 @@ export default function FinalCTA() {
         </div>
       </div>
     </section>
+    </>
   );
 }
