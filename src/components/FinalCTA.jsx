@@ -32,14 +32,27 @@ export default function FinalCTA() {
         body: JSON.stringify(formState)
       });
       
-      const data = await response.json();
+      let data;
+      const contentType = response.headers.get("content-type");
+      
+      // Robust response parsing
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.error("Non-JSON API Response:", text);
+        if (response.status === 404) {
+           throw new Error("API endpoint not found (404). Please ensure the backend server is running.");
+        }
+        throw new Error(`Unexpected server response (${response.status}).`);
+      }
       
       if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
+        throw new Error(data?.message || `Server error: ${response.status}`);
       }
       
       setIsSubmitted(true);
-      toast.success(data.message || "Your enquiry has been sent successfully.");
+      toast.success(data?.message || "Your enquiry has been sent successfully.");
       
       // Reset form
       setFormState({
@@ -53,7 +66,7 @@ export default function FinalCTA() {
       
     } catch (error) {
       console.error("Form submission error:", error);
-      toast.error(error.message || "Unable to send your enquiry. Please try again later.");
+      toast.error(error.message || "Unable to send your enquiry. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }

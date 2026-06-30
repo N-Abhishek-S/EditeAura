@@ -1,10 +1,9 @@
-/* eslint-env node */
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   // 1. Only allow POST requests
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+    return res.status(405).json({ success: false, message: 'Method Not Allowed' });
   }
 
   try {
@@ -13,13 +12,13 @@ export default async function handler(req, res) {
 
     // 3. Validation
     if (!name || !email || !phone || !company || !service || !message) {
-      return res.status(400).json({ message: 'All fields are required.' });
+      return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
     // Basic regex validations
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ message: 'Invalid email address.' });
+      return res.status(400).json({ success: false, message: 'Invalid email address.' });
     }
 
     // Strip HTML tags for basic sanitization (simple approach)
@@ -31,9 +30,9 @@ export default async function handler(req, res) {
     const safeService = sanitize(service);
     const safeMessage = sanitize(message);
 
-    // Limit lengths
-    if (safeMessage.length > 2000) {
-      return res.status(400).json({ message: 'Message is too long.' });
+    // Limit lengths (increased to 5000 to accommodate detailed project briefs)
+    if (safeMessage.length > 5000) {
+      return res.status(400).json({ success: false, code: 'VALIDATION_FAILED', message: 'Message is too long. Please keep it under 5000 characters.' });
     }
 
     // 4. Configure Nodemailer Transporter
@@ -46,7 +45,7 @@ export default async function handler(req, res) {
         pass: process.env.SMTP_PASS,
       },
       // Increase timeout for serverless environments
-      connectionTimeout: 10000, 
+      connectionTimeout: 10000,
     });
 
     // Verify connection configuration (optional, but good for robust error throwing)
@@ -156,11 +155,14 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true, message: 'Enquiry sent successfully.' });
 
   } catch (error) {
-    console.error('SMTP Error:', error);
-    // Never expose raw SMTP errors to the client
-    return res.status(500).json({ 
-      success: false, 
-      message: 'Unable to send your enquiry. Please try again later.' 
+    console.error('SMTP Error Stack Trace:', error.stack || error);
+    
+    // Provide structured JSON with detailed diagnostics
+    return res.status(500).json({
+      success: false,
+      code: error.code || 'SMTP_INTERNAL_ERROR',
+      message: 'Unable to send your enquiry. Please try again later.',
+      details: error.message || 'Unknown SMTP error occurred during transmission'
     });
   }
 }
