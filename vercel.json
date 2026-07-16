@@ -1,12 +1,10 @@
 {
+  "version": 2,
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/voice/session", "destination": "/api/voice/session" },
+    { "source": "/api/voice/message", "destination": "/api/voice/message" },
+    { "source": "/api/voice/end",     "destination": "/api/voice/end"     },
+    { "source": "/api/contact",       "destination": "/api/contact"       },
+    { "source": "/(.*)",              "destination": "/index.html"        }
   ]
 }
